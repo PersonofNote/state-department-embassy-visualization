@@ -1,0 +1,609 @@
+:root {
+    --dark-accent: #05386B;
+    --main: #6dbbdc;
+    --dark: #3781a5;
+    --lighter: #8ee4af;
+    --lightest: white;
+    --dot-color: #FBD958;
+    --dot-border: #FF5C56;
+    --gray: #a9a9a9;
+}
+#diplomacy-plugin-wrapper {
+    background-color: var(--lightest);
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative; /* Establish as pseudo- document root; all elements relative to this */
+    font-family: 'Roboto', 'Arial', 'sans-serif';
+}
+
+#diplomacy-plugin-wrapper .wp-block-file {
+  display: none;
+}
+
+.embassy-title-header {
+    box-shadow: 0 4px 4px -3px lightgray;
+    padding: 0 2rem 0.4rem 0;
+    line-height: 0.5;
+}
+
+.embassy-title-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+#diplomacy-plugin-wrapper h1 {
+    font-size: 22px;
+    margin: 0;
+}
+
+#diplomacy-plugin-wrapper h2 {
+  font-size: 17px;
+  margin: 0;
+  padding: 0;
+}
+
+#diplomacy-plugin-wrapper h3 {
+    margin: 0;
+    margin-top: -10px;
+    font-size: 17px;
+    color: gray;
+}
+
+.modal-button {
+  text-transform: capitalize;
+  margin-top: 4px;
+  position: absolute;
+  left: 8rem;
+  padding: none;
+  background: none;
+  font-size: 17px;
+  text-decoration: underline;
+  color: gray;
+  background-color: rgba(255,255,255,0.7);
+}
+
+.modal-button:hover {
+  text-transform: capitalize;
+  margin-top: 4px;
+  position: absolute;
+  left: 8rem;
+  padding: none;
+  background: none;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  color: var(--dot-border);
+
+}
+
+.modal-button:active {
+  text-transform: capitalize;
+  margin-top: 4px;
+  position: absolute;
+  left: 8rem;
+  padding: none;
+  background: none;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  color: var(--dot-border);
+  background-color: rgba(255,255,255,0.7);
+}
+
+.modal-button:focus {
+  text-transform: capitalize;
+  margin-top: 4px;
+  position: absolute;
+  left: 8rem;
+  padding: none;
+  background: none;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  color: var(--dot-border);
+  background-color: rgba(255,255,255,0.7);
+}
+
+#legation-modal {
+  position: absolute;
+  left: -9999px;
+  top: 2rem;
+  background-color: gray;
+  color: white;
+  padding: 1rem 2rem;
+  width: 25%;
+  z-index: 10;
+  font-size: 0.8rem;
+  opacity: 0;
+}
+
+#legation-modal.active {
+  left: 5rem;
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+#map-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.secondary-container {
+  width: 81%;
+  margin: auto;
+  display: flex;
+  margin-top: -1rem;
+}
+
+.info {
+  width: 90%;
+  margin: auto;
+}
+
+.map-legend-container {
+  width: 80%;
+  max-width: 1800px;
+  margin: auto;
+  margin-right: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.legend-header {
+  text-align: center;
+  width: 50%;
+  display: flex;
+  font-size: 1rem;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+
+.legend-header h2 {
+  font-size: 16px;
+  margin-right: 0.5rem;
+  flex: 1;
+}
+
+.year-display {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--dot-border);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.year-display:before {
+  color: black;
+  font-size: 18px;
+  padding-right: 0.3rem;
+  content: "|";
+}
+
+.year-display:after{
+  color: black;
+  font-size: 18px;
+  padding: 0 0.3rem;
+  content: "|";
+}
+
+.legend-span {
+  padding-top: 0.3rem;
+  font-size: 16px;
+  padding-right: 1rem;
+  text-align: left;
+  color: gray;
+  align-items: baseline;
+}
+
+.legend-info {
+  padding-top: 0.3rem;
+  font-size: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 1rem;
+  width: 50%;
+  height: 6rem;
+}
+
+.legend-mask {
+  position: absolute;
+  margin-top: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  opacity: 0;
+  z-index: 10;
+}
+
+.legend-footer {
+  padding: 1rem;
+  height: 10%;
+  border-top: 1px solid var(--border-top);
+  font-size: 0.5rem;
+}
+
+.svg-and-controls-container {
+  position: relative;
+  height: 75vh;
+  width: 80%;
+  max-width: 1800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#worldMap {
+    fill: var(--main);
+    stroke: var(--main);
+    width: 100%;
+    height: 90%;
+}
+
+.landpath {
+
+}
+
+
+.dot {
+    z-index: 10;
+    transition: all 1s;
+    stroke: 0;
+}
+
+.stop-center {
+    fill: var(--dot-color);
+}
+
+.stop-outer {
+    fill: var(--dot-border);
+}  
+
+.dot:hover {
+    /*fill: orange;*/
+}
+
+/* Hides the slider so that custom slider can be made */
+#timeline {
+  -webkit-appearance: none; 
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+#timeline::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+
+#timeline::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hide slider*/
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+
+/* All the same stuff for Firefox */
+#timeline::-moz-range-thumb {
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+#timeline::-ms-thumb {
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#timeline::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: var(--main);
+  cursor: pointer;
+  margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px  var(--dark);
+}
+
+#timeline::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4.4px;
+  cursor: pointer;
+  background: var(--main);
+  border-radius: 1.3px;
+}
+
+
+#timeline::-moz-range-track {
+  width: 100%;
+  height: 4.4px;
+  cursor: pointer;
+  background: var(--main);
+  border-radius: 1.3px;
+  border: 0.2px solid var(--dark-accent);
+}
+
+#timeline::-ms-track {
+  width: 100%;
+  height: 4.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+#timeline::-ms-fill-lower {
+  border: 0.2px solid var(--dark);
+  border-radius: 2.6px;
+}
+#timeline:focus::-ms-fill-lower {
+  background: var(--main);
+}
+#timeline::-ms-fill-upper {
+  background: var(--main);
+  border: 0.2px solid var(--dark);
+  border-radius: 2.6px;
+}
+
+
+.play-container {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    margin-left: 4rem;
+}
+
+.play-button {
+  height: 64px;
+  width: 64px;
+  align-self: center;
+}
+
+.play-button:focus {
+    outline: var(--dark);
+    background-color: var(--dark);
+}
+
+.play-button svg {
+    height: 64px;
+    width: 64px;
+    fill: var(--gray);
+    transform: translate(4px, -6px);
+}
+
+.play-button svg:hover {
+    fill: var(--dot-border);
+}
+
+.play-button svg text {
+  color: var(--dot-border);
+}
+
+.icon-controls {
+  display: none;
+}
+
+ .visible {
+  display: block;
+}
+
+.controls {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: -4rem;
+}
+
+.play-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+}
+
+#icon-countdown-circle {
+  stroke-dasharray: 76;
+  stroke-dashoffset: 76;
+  transition: all, 1s ease-in;
+  display: none; /* TEMPORARY */
+}
+
+.timeline-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem auto;
+}
+
+#timeline {
+    width: 100%;
+}
+
+datalist {
+  display: flex;
+  flex-direction: row;
+  width: 96%;
+  margin-top: 0.2rem;
+  justify-content: space-around;
+  flex-shrink: 1;
+  align-self: flex-start;
+}
+
+#yearsList option {
+  color: var(--main);
+  font-size: 0.6rem;
+  font-weight: bold;
+  width: 0px;
+  margin: -1px;
+  text-align: left;
+  position: relative;
+}
+
+#yearsList option label:last-child {
+  position: absolute;
+  right: 0;
+}
+
+
+div.tooltip {	
+  position: absolute;			
+  text-align: center;				
+  padding: 8px;				
+  font: 12px sans-serif;		
+  background: var(--dot-border);
+  color: white;
+  font-weight: bold;
+  border: 0px;		
+  border-radius: 8px;			
+  pointer-events: none;			
+}
+
+
+
+
+@media only screen and (max-width: 1068px) {
+
+  .play-container {
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  #map-container {
+    width: 80%;
+    margin: auto;
+  }
+
+  datalist {
+    width: 80%;
+    justify-content: center;
+    font-size: 0.5rem;
+  }
+  .secondary-container {
+    width: 100%;
+  }
+
+  .modal-button{
+    left: 0;
+    padding: 1rem;
+    text-transform: capitalize;
+  }
+
+  .modal-button:hover {
+    left: 0;
+    padding: 1rem;
+    text-transform: capitalize;
+    
+  }
+
+  .modal-button:active {
+    left: 0;
+    padding: 1rem;
+    text-transform: capitalize;
+  }
+
+  .modal-button:focus {
+    left: 0;
+    padding: 1rem;
+    text-transform: capitalize;
+  }
+
+  #legation-modal {
+    width: 50%;
+    top: 3rem;
+  }
+
+  .map-legend-container {
+    width: 100%;
+    padding-left: 0;
+    flex-direction: column;
+  }
+
+  .legend-header {
+    width: 90%;
+    margin: auto;
+    flex-direction: column;
+  }
+
+  .legend-header h2 {
+    margin: auto;
+  }
+  
+
+  .legend-header .year-display {
+    margin: auto;
+    flex-shrink: 2;
+  }
+
+  .legend-info {
+    width: 90%;
+    margin: auto;
+  }
+  .legend-mask{
+    margin-top: 0;
+  }
+
+  .year-display:before {
+    content: "";
+  }
+  
+  .year-display:after{
+    content: "";
+  }
+  
+  .controls {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .play-container {
+    margin: auto;
+  }
+  .play-button {
+    height: 56px;
+    width: 56px;
+  }
+  #yearsList {
+    display: none; /* Come back to this and use javascript to display fewer years */
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  body {
+        font-size: 1.5rem;
+  }
+  #map-container {
+    width: 100%;
+  }
+
+  #timeline {
+    width: 100%;
+  }
+  
+}
